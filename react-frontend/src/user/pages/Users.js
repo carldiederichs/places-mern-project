@@ -6,7 +6,7 @@ const Users = () => {
         {
             id: 'u1', 
             name: 'Carl Diederichs', 
-            image: 'https://villagesonmacarthur.com/wp-content/uploads/2020/12/Blank-Avatar.png', 
+            image: 'https://avatars.githubusercontent.com/u/52462273?v=4', 
             places: 3
         }
     ];
