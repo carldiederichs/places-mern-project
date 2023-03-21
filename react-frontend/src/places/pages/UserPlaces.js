@@ -11,8 +11,8 @@ const DUMMY_PLACES= [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/df/NYC_Empire_State_Building.jpg',
     address: '20 W 34th St., New York, NY 10001, United States',
     location: {
-      lat:40.7484405, 
-      lng:-73.9878531, 
+      lat: 40.7484405, 
+      lng: -73.9878531, 
     },
     creator: 'u1'
   },
@@ -23,8 +23,8 @@ const DUMMY_PLACES= [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/df/NYC_Empire_State_Building.jpg',
     address: '20 W 34th St., New York, NY 10001, United States',
     location: {
-      lat:40.7484405, 
-      lng:-73.9878531, 
+      lat: 40.7484405, 
+      lng: -73.9878531, 
     },
     creator: 'u2'
   }
