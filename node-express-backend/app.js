@@ -5,6 +5,8 @@ const placesRoutes = require('./routes/places-routes');
 
 const app = express();
 
+app.use(bodyParser.json()); 
+
 app.use('/api/places', placesRoutes); 
 
 app.use((error, req, res, next) => {
@@ -15,4 +17,4 @@ app.use((error, req, res, next) => {
   res.json({message: error.message || 'An unknown error occurred!'});
 });
 
-app.listen(5000)
+app.listen(5000);
