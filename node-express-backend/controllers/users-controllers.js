@@ -47,7 +47,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name, 
     email, 
-    image: 'https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg', 
+    image: 'https://avatars.githubusercontent.com/u/52462273?v=4', 
     password, 
     places: []
   }); 
