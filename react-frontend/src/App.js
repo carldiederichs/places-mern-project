@@ -5,6 +5,7 @@ import {
   Redirect, 
   Switch
 } from 'react-router-dom';
+
 import Users from './user/pages/Users';
 import NewPlace from './places/pages/NewPlace';
 import UserPlaces from './places/pages/UserPlaces';
@@ -17,7 +18,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [userId, setUserId] = useState(false); 
 
-  const login = useCallback((uid) => {
+  const login = useCallback(uid => {
     setIsLoggedIn(true); 
     setUserId(uid);
   }, []);
@@ -64,17 +65,22 @@ const App = () => {
     );
   }
 
-  return( 
-  <AuthContext.Provider 
-    value={{isLoggedIn: isLoggedIn, userId: userId, login: login, logout: logout}}
-  >
-    <Router>
-      <MainNavigation />
-      <main>
+  return ( 
+    <AuthContext.Provider 
+      value={{
+        isLoggedIn: isLoggedIn, 
+        userId: userId, 
+        login: login, 
+        logout: logout
+      }}
+    >
+      <Router>
+        <MainNavigation />
+        <main>
           {routes}
-      </main>
-    </Router>
-  </AuthContext.Provider>
+        </main>
+      </Router>
+    </AuthContext.Provider>
   );
 };
 

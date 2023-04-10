@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -16,7 +16,7 @@ import './PlaceForm.css';
 
 const NewPlace = () => {
   const auth = useContext(AuthContext); 
-  const {isLoading, error, sendRequest, clearError} = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm({
     title: {
       value: '',
@@ -32,6 +32,8 @@ const NewPlace = () => {
     }
   }, false);
 
+  const history = useHistory();
+
   const placeSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -45,18 +47,16 @@ const NewPlace = () => {
           creator: auth.userId
         }),
         { 'Content-Type': 'application/json' }
-    );
-    history.push('/'); 
+      );
+      history.push('/'); 
     } catch (err) {}
   };
-
-  const history = useHistory();
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <form className="place-form" onSubmit={placeSubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay/>}
+        {isLoading && <LoadingSpinner asOverlay />}
         <Input
           id="title"
           element="input"
