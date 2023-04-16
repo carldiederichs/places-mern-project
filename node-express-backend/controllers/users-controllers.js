@@ -20,10 +20,14 @@ const getUsers = async (req, res, next) => {
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
   }
+
+
+
   const { name, email, password } = req.body;
 
   let existingUser; 
@@ -48,7 +52,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name, 
     email, 
-    image: 'https://avatars.githubusercontent.com/u/52462273?v=4', 
+    image: req.file.path, 
     password, 
     places: []
   }); 
