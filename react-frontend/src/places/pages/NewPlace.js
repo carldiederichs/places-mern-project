@@ -18,24 +18,27 @@ import './PlaceForm.css';
 const NewPlace = () => {
   const auth = useContext(AuthContext); 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [formState, inputHandler] = useForm({
-    title: {
-      value: '',
-      isValid: false
-    },
-    description: {
-      value: '',
-      isValid: false
+  const [formState, inputHandler] = useForm(
+    {
+      title: {
+        value: '',
+        isValid: false
+      },
+      description: {
+        value: '',
+        isValid: false
+      }, 
+      address: {
+        value: '',
+        isValid: false
+      }, 
+      image: {
+        value: null, 
+        isValid: false
+      }
     }, 
-    address: {
-      value: '',
-      isValid: false
-    }, 
-    image: {
-      value: null, 
-      isValid: false
-    }
-  }, false);
+    false
+  );
 
   const history = useHistory();
 
@@ -84,7 +87,7 @@ const NewPlace = () => {
           element="input"
           label="Address"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address"
+          errorText="Please enter a valid address."
           onInput={inputHandler}
         />
         <ImageUpload 

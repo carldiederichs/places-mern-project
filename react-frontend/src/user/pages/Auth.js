@@ -14,7 +14,7 @@ import {
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import './Auth.css'; 
+import "./Auth.css"; 
 
 const Auth = () => {
   const auth = useContext(AuthContext); 
@@ -51,12 +51,12 @@ const Auth = () => {
           ...formState.inputs,
           name: {
             value: '', 
-            isValid: false, 
-        }, 
-        image: {
-          value: null,
-          isValid: false
-        }
+            isValid: false
+          }, 
+          image: {
+            value: null,
+            isValid: false
+          }
         }, 
         false
       );
@@ -66,8 +66,6 @@ const Auth = () => {
 
   const authSubmitHandler = async event => {
     event.preventDefault(); 
-
-    console.log(formState.inputs); 
 
     if (isLoginMode) {
       try {
@@ -94,7 +92,7 @@ const Auth = () => {
         const responseData = await sendRequest(
           'http://localhost:5000/api/users/signup', 
           'POST', 
-          formData,
+          formData
         );
         
         auth.login(responseData.user.id);
@@ -104,20 +102,20 @@ const Auth = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError}/>
-      <Card className='authentication'>
-        {isLoading && <LoadingSpinner asOverlay/>}
+      <ErrorModal error={error} onClear={clearError} />
+      <Card className="authentication">
+        {isLoading && <LoadingSpinner asOverlay />}
         <h2>Login Required</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
             <Input 
-              element='input' 
-              id='name' 
-              type='text' 
-              label='Your Name' 
+              element="input" 
+              id="name" 
+              type="text" 
+              label="Your Name" 
               validators={[VALIDATOR_REQUIRE()]} 
-              errortext='Please enter a name.'
+              errorText="Please enter a name."
               onInput={inputHandler}
             />
           )}
@@ -127,26 +125,27 @@ const Auth = () => {
               id="image" 
               onInput={inputHandler}
               errorText="Please provide an image."
-            />)}
+            />
+          )}
           <Input 
-            element='input' 
-            id='email' 
-            type='email' 
-            label='E-mail' 
+            element="input"
+            id="email" 
+            type="email" 
+            label="E-Mail" 
             validators={[VALIDATOR_EMAIL()]}
-            errorText='Please enter a valid address'
+            errorText="Please enter a valid email address."
             onInput={inputHandler}
           />
           <Input 
-            element='input' 
-            id='password' 
-            type='password' 
-            label='Password' 
+            element="input"
+            id="password" 
+            type="password" 
+            label="Password" 
             validators={[VALIDATOR_MINLENGTH(6)]}
-            errorText='Please enter a valid password, at least 6 characters'
+            errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
-          <Button type='submit' disabled={!formState.isValid}>
+          <Button type="submit" disabled={!formState.isValid}>
             {isLoginMode ? 'LOGIN' : 'SIGNUP'}
           </Button>
         </form>
