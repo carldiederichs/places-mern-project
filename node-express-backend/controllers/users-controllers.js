@@ -20,13 +20,10 @@ const getUsers = async (req, res, next) => {
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
   }
-
-
 
   const { name, email, password } = req.body;
 
@@ -35,7 +32,7 @@ const signup = async (req, res, next) => {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
     const error = new HttpError(
-      'Sign-up failed, please try again later', 
+      'Signup failed, please try again later.', 
       500
     ); 
     return next(error);
@@ -54,7 +51,7 @@ const signup = async (req, res, next) => {
     email, 
     image: req.file.path, 
     password, 
-    places: []
+    places: [],
   }); 
 
   try {
@@ -67,7 +64,7 @@ const signup = async (req, res, next) => {
     return next(error); 
   }
 
-  res.status(201).json({user: createdUser.toObject({ getters: true })});
+  res.status(201).json({ user: createdUser.toObject({ getters: true }) });
 };
 
 const login = async (req, res, next) => {
@@ -87,7 +84,7 @@ const login = async (req, res, next) => {
 
   if (!existingUser || existingUser.password !== password) {
     const error = new HttpError(
-      'Invalid credentials, could not login', 
+      'Invalid credentials, could not login.', 
       401
     ); 
     return next(error); 
